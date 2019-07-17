@@ -1,0 +1,76 @@
+body {
+  background-color: rgb(187, 200, 211);
+  /*rgb(158, 193, 220); */
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* 
+  The nav element also includes an h1 element, so 
+  the style for h1 also affects the look of the 
+  navigation bar
+*/
+nav {
+  background-color: rgb(50, 50, 50);
+  color: rgb(187, 200, 211);
+  font-size: 20px;
+  text-align: center;
+  margin: 0px;
+  width: 100%;
+}
+
+/*
+  To seperate the navigation-bar, the content and the footer
+  main is an element containing all the content of the page 
+  without the navigation bar and without the footer
+*/
+main:after {
+  content: "";
+  margin-bottom: 15px;
+  display: block;
+  /* Clear all floating elements before the footer */
+  clear: both;
+}
+
+/*
+  header inside the navigation-bar
+*/
+h1 {
+  margin: 20px;
+  padding: 5px;
+  font-family: sans-serif;
+  /*margin-bottom: 25px;*/
+}
+
+/*
+  header inside the contentbox
+*/
+h2 {
+  margin-top: 0px;
+}
+
+.contentbox {
+  max-width: 95%;
+  max-height: 90%;
+  border: 1px solid black;
+  padding: 30px;
+  margin: 15px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 3px 3px 3px rgb(100, 100, 100);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+footer {
+  position: absolute;
+  bottom: 5px;
+  height: 40px;
+  width: 99%;
+  background-color: rgb(50, 50, 50);
+  color: white;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Microservice Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<!-- <body style="background-color:rgb(232, 232, 232);"> -->
+<body>
+<!-- 
+  Als Überschrift könnte man auch den Namen des aktuellen Projektes nehmen
+  Website muss für jedes Projekt einzeln erstellt werden, wie ist das möglich?
+  Denn der Graph sieht bei jedem Projekt anders aus und die Links müssen anders 
+  gesetzt werden. Soll das alles per Hand passieren?
+  Erstmal Ja, um Zeit zu sparen und das Prinzip zu verstehen  
+ -->
+<nav>
+  <h1>Microservice Documentation</h1>
+</nav>
+
+<main>
+<!--
+  TODO: Get graph picture in here
+  TODO: put link to the swagger documentation for the whole system
+-->
+<div class="contentbox">
+  <!--
+    Maybe make this picture bigger (together with the boxes) depending
+    on the screen size with %(percent) instead of pixels, but then it
+    it has to be zoomable so it can still be understood on small screens.
+    When percentage is used, only width needs to be specified, height will
+    follow the width in the pictures ratio
+    "http://cr.acg.maine.edu/wx_frames/gfs/ds/gfs_world-ced_t2anom_1-day.png
+  -->
+  <img src="./Pictures/graph_istio.png"
+    alt="Global Anomaly">
+  <p>
+    Click on the graphs notes to see the Swagger documentation for a specific service.<br>
+    <a href="">Swagger documentation for the whole system</a>
+  </p>
+</div>
+
+</main>
+
+<footer>
+  <table>
+  <tr>
+    <td><a style="color:white;" href="about.html">About</a></td>
+    <td><a style="color:white;" href="contact.html">Contact</a></td>
+  </tr>
+  </table>
+</footer>
+
+<!--
+  Scripts should be at the bottom of the body, because their compilation
+  slows down the display of visual elements while loading the page
+-->
+<script src="navigation.js"></script>
+
+</body>
+</html>
