@@ -1,0 +1,122 @@
+{
+    "timestamp": 1567537501,
+    "duration": 600,
+    "graphType": "workload",
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "47efcb6a38cec94b8f02e15c58ce44df",
+            "nodeType": "workload",
+            "namespace": "default",
+            "workload": "details-v1",
+            "app": "details",
+            "version": "v1",
+            "destServices": [
+              {
+                "namespace": "default",
+                "name": "details"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "id": "c7c4074158d3c18e0c780126e50637db",
+            "nodeType": "workload",
+            "namespace": "default",
+            "workload": "productpage-v1",
+            "app": "productpage",
+            "version": "v1",
+            "destServices": [
+              {
+                "namespace": "default",
+                "name": "productpage"
+              }
+            ],
+            "isRoot": true
+          }
+        },
+        {
+          "data": {
+            "id": "b744c74ec7104950b36f9bf0b47a22fd",
+            "nodeType": "workload",
+            "namespace": "default",
+            "workload": "ratings-v1",
+            "app": "ratings",
+            "version": "v1",
+            "destServices": [
+              {
+                "namespace": "default",
+                "name": "ratings"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "id": "2faa6ac001f450ec4000f88ddd8294a8",
+            "nodeType": "workload",
+            "namespace": "default",
+            "workload": "reviews-v1",
+            "app": "reviews",
+            "version": "v1",
+            "isUnused": true
+          }
+        },
+        {
+          "data": {
+            "id": "11b370489b738638fabddc4f4ce47ebd",
+            "nodeType": "workload",
+            "namespace": "default",
+            "workload": "reviews-v2",
+            "app": "reviews",
+            "version": "v2",
+            "destServices": [
+              {
+                "namespace": "default",
+                "name": "reviews"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "id": "a142ca56dcc06f79807bea3d6832a822",
+            "nodeType": "workload",
+            "namespace": "default",
+            "workload": "reviews-v3",
+            "app": "reviews",
+            "version": "v3",
+            "isUnused": true
+          }
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "5d577c549824d1376e9fb8477324240c",
+            "source": "11b370489b738638fabddc4f4ce47ebd",
+            "target": "b744c74ec7104950b36f9bf0b47a22fd",
+            "traffic": {}
+          }
+        },
+        {
+          "data": {
+            "id": "1bb64adef9a1e240198ab54f1c62fd7f",
+            "source": "c7c4074158d3c18e0c780126e50637db",
+            "target": "11b370489b738638fabddc4f4ce47ebd",
+            "traffic": {}
+          }
+        },
+        {
+          "data": {
+            "id": "5524b9faf77e42db3d0c979086d4bdc2",
+            "source": "c7c4074158d3c18e0c780126e50637db",
+            "target": "47efcb6a38cec94b8f02e15c58ce44df",
+            "traffic": {}
+          }
+        }
+      ]
+    }
+  }

@@ -23,10 +23,24 @@
 
 <main>
 <!--
+  TODO: two buttons for uploading json graphs, one for kiali format, one for manually 
+  written graphs in my own standard format
+  Uploading a graph will result in the drawing of this graph inside the graphbox 
+  or an error message if the format is wrong
+  https://wiki.selfhtml.org/extensions/Selfhtml/frickl.php/Beispiel:JS_File-1.html#view_result
+-->
+<p>
+    <input type="file" id="graph_file_kiali" name="graph_file_kiali" accept=".json" class="filechooser"/>
+    <label for="graph_file_kiali">Upload Kiali Graph</label>
+    <input type="file" id="graph_file" name="graph_file" accept=".json" class="filechooser"/>
+    <label for="graph_file">Upload Own Graph</label>
+</p>
+
+<!--
   TODO: Get graph picture in here
   TODO: put link to the swagger documentation for the whole system
 -->
-<div class="contentbox">
+<div id="graphbox" class="contentbox">
   <!--
     Maybe make this picture bigger (together with the boxes) depending
     on the screen size with %(percent) instead of pixels, but then it
@@ -34,9 +48,12 @@
     When percentage is used, only width needs to be specified, height will
     follow the width in the pictures ratio
     "http://cr.acg.maine.edu/wx_frames/gfs/ds/gfs_world-ced_t2anom_1-day.png
-  -->
+  
   <img src="./Pictures/graph_istio.png"
     alt="Global Anomaly">
+  -->
+  <p id="imagetest">imagetest</p>
+
   <p>
     Click on the graphs notes to see the Swagger documentation for a specific service.<br>
     <a href="">Swagger documentation for the whole system</a>
@@ -58,7 +75,7 @@
   Scripts should be at the bottom of the body, because their compilation
   slows down the display of visual elements while loading the page
 -->
-<script src="navigation.js"></script>
+<script src="graph.js"></script>
 
 </body>
 </html>
