@@ -2,10 +2,23 @@
     bound to a button, that let's people upload their graph file in the
     kiali json-format
 */
-function upload_kiali_graph() {
-    // convert kiali format into my easier format
-    convert_kiali_to_standard();
-    draw_graph();
+function upload_kiali_graph(evt) {
+    // TODO: do this with a predefined object that represents the correct format
+    // so the file can be rejected if it is not correct
+    var file = evt.target.files[0];
+    var kiali_graph_string;
+
+    var reader = new FileReader();
+    reader.onload = function() {
+        kiali_graph_string = reader.result;
+        //document.getElementById("imagetest").innerHTML = kiali_graph_string;
+        var kiali_graph_obj = JSON.parse(kiali_graph_string);
+        document.getElementById("imagetest").innerHTML = kiali_graph_obj.elements.nodes[0].data.id;
+        // convert kiali format into the standard format
+        convert_kiali_to_standard(kiali_graph_obj);
+        draw_graph(graph_obj);
+    }
+    reader.readAsText(file);
 }
 
 /*
@@ -15,26 +28,28 @@ function upload_kiali_graph() {
           Die Beschreibung könnte auch auf der Website verlinkt werden, so dass 
           Benutzer erfahren können, welches Format ihr Graph haben sollte
 */
-function upload_standard_graph(){
-    draw_graph();
-}
-
-function draw_graph() {
-    document.getElementById("imagetest").innerHTML = "graph goes here";
-    convert_json_graph()
+function upload_standard_graph(evt){
+    // TODO: do this with a predefined object that represents the correct format
+    // so the file can be rejected if it is not correct
+    var graph_obj = JSON.parse(evt.target.file);
+    draw_graph(graph_obj);
 }
 
 /*
-
+    draw the graph and display it on the website
+    the graph has to be a javascript object
+    only works with the standard format, kiali format
+    has to be converted before calling this function
 */
-function convert_json_grap() {
+function draw_graph(graph_obj) {
 
 }
+
 
 /*
     convert the kiali json format into the easier format used to draw the graph
 */
-function convert_kiali_to_standard(){
+function convert_kiali_to_standard(kiali_graph_obj){
 
 }
 
