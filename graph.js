@@ -29,10 +29,18 @@ function upload_kiali_graph(evt) {
           Benutzer erfahren können, welches Format ihr Graph haben sollte
 */
 function upload_standard_graph(evt){
-    // TODO: do this with a predefined object that represents the correct format
-    // so the file can be rejected if it is not correct
-    var graph_obj = JSON.parse(evt.target.file);
-    draw_graph(graph_obj);
+    var file = evt.target.files[0];
+    var graph_string;
+
+    var reader = new FileReader();
+    reader.onload = function() {
+        graph_string = reader.result;
+        //document.getElementById("imagetest").innerHTML = kiali_graph_string;
+        var graph_obj = JSON.parse(graph_string);
+        document.getElementById("imagetest").innerHTML = graph_obj.nodes[0].id;
+        draw_graph(graph_obj);
+    }
+    reader.readAsText(file);
 }
 
 /*
@@ -52,7 +60,8 @@ function draw_graph(graph_obj) {
     var nodes = graph_obj.nodes;
     for(var i = 0; i < nodes.length; i++){
         node = nodes[i];
-        g.setNode(nodes.id,    { label: nodes.app + "-" + nodes.version,  width: 144, height: 100 });
+        document.getElementById("imagetest").innerHTML = "node " + i;
+        g.setNode(node.id, { label: node.app + "-" + node.version,  width: 144, height: 100 });
     }
 
     var edges = graph_obj.edges;
@@ -65,8 +74,7 @@ function draw_graph(graph_obj) {
 
     // draw the graph
     var render = new dagreD3.render();
-    var svg = d3.select("svg"),
-    svgGroup = svg.append("g");
+    var svg = d3.select("svg"), svgGroup = svg.append("g");
     render(d3.select("svg g"), g);
 
 }

@@ -1,0 +1,23 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Display Documentation on Microservice Systems",
+  "main": "graph.js",
+  "dependencies": {
+    "dagre-d3": "^0.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennissey/ThesisWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jennissey/ThesisWebsite/issues"
+  },
+  "homepage": "https://github.com/jennissey/ThesisWebsite#readme"
+}
