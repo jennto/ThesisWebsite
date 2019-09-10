@@ -5,15 +5,6 @@
           "app": "details",
           "version": "v1",
           "link" : "details-v1/docs"
-          // TODO: rausfinden, wie man an die ID kommt
-          // IDs anzeigen im Browser
-          // vielleicht ohne id, mehrere Instanzen zu unterscheiden, 
-          // ist wahrscheinlich nicht wichtig, dann müssten Benutzer beim Hinzufügen von
-          // nodes oder edges die id nicht erst herausfinden
-          // Links: Jeder Service liefert seine eigene Dokumentation über eine bestimmte
-          // URL, z.B. <Service-Name>/docs, das wäre der default
-          // man sollte aber auch Benutzer eien Link angeben lassen, damit andere 
-          // Pfade möglich sind
         },
         {
           "id": "c7c4074158d3c18e0c780126e50637db",
@@ -41,19 +32,17 @@
           "version": "v3"
         }
       ],
-      "edges": [
+    "edges": [
         {
-          "id": "5d577c549824d1376e9fb8477324240c",
           "source": "11b370489b738638fabddc4f4ce47ebd",
           "target": "b744c74ec7104950b36f9bf0b47a22fd"
         },
         {
-          "id": "1bb64adef9a1e240198ab54f1c62fd7f",
           "source": "c7c4074158d3c18e0c780126e50637db",
           "target": "11b370489b738638fabddc4f4ce47ebd"
         },
         {
-          "id": "5524b9faf77e42db3d0c979086d4bdc2",
+
           "source": "c7c4074158d3c18e0c780126e50637db",
           "target": "47efcb6a38cec94b8f02e15c58ce44df"
         }

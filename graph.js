@@ -36,17 +36,44 @@ function upload_standard_graph(evt){
 }
 
 /*
+    TODO 0: write a graph in the standard format
+    TODO 1: write this function
     draw the graph and display it on the website
     the graph has to be a javascript object
     only works with the standard format, kiali format
     has to be converted before calling this function
 */
 function draw_graph(graph_obj) {
+    // create the graph
+    var g = new dagre.graphlib.Graph();
+    g.setGraph({});
+    g.setDefaultEdgeLabel(function() { return {}; });
+
+    var nodes = graph_obj.nodes;
+    for(var i = 0; i < nodes.length; i++){
+        node = nodes[i];
+        g.setNode(nodes.id,    { label: nodes.app + "-" + nodes.version,  width: 144, height: 100 });
+    }
+
+    var edges = graph_obj.edges;
+    for(var i = 0; i < edges.length; i++){
+        edge = edges[i];
+        g.setEdge(edge.source, edge.target);
+    }
+
+    dagre.layout(g);
+
+    // draw the graph
+    var render = new dagreD3.render();
+    var svg = d3.select("svg"),
+    svgGroup = svg.append("g");
+    render(d3.select("svg g"), g);
 
 }
 
 
 /*
+    TODO 2
     convert the kiali json format into the easier format used to draw the graph
 */
 function convert_kiali_to_standard(kiali_graph_obj){
