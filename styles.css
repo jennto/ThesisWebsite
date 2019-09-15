@@ -109,3 +109,9 @@ footer {
   stroke: #333;
   stroke-width: 1.5px;
 }
+
+.clusters rect {
+  fill: #fff;
+  stroke: #999;
+  stroke-width: 1.5px;
+}

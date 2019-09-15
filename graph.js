@@ -51,23 +51,38 @@ function upload_standard_graph(evt){
 function draw_graph(graph_obj) {
     // create the graph
     // TODO: find out whether it makes a difference if dagre or dagreD3 is used here
-    var g = new dagreD3.graphlib.Graph();
+    var g = new dagreD3.graphlib.Graph({compound:true});
     g.setGraph({});
     g.setDefaultEdgeLabel(function() { return {}; });
 
-    // var clusters := [];
     var nodes = graph_obj.nodes;
+    var clusters = [];
+    var nodes_included = [];
     for(var i = 0; i < nodes.length; i++){
         node = nodes[i];
         g.setNode(node.id, { label: node.app + "-" + node.version,  width: node.app.length*10+10, height: 40 });
-        // TODO: if node.app is identical to an already existing node, create a cluster node
-        // like this: 
-        // g.setNode('top_group', {label: 'Top Group', clusterLabelPos: 'bottom', style: 'fill: #ffd47f'});
-        // g.setParent('b', 'top_group');
-        // clusters.push(node.app)
-        // test if the cluster already exists, create an array of strings to keep
-        // track of existing clusters. Strings are the node.app field, because that
-        // is what is equal to all the nodes inside the cluster
+        // if node.app is identical to an already existing node, create a cluster node
+        // test if the cluster already exists, before creating a new one
+        if(nodes_included.includes(node.app)){
+            if(!clusters.includes(node.app)){
+                g.setNode(node.app, {label: node.app, clusterLabelPos: ""});
+                clusters.push(node.app);
+            }
+        }
+        else{
+            nodes_included.push(node.app);
+        }
+    }
+
+    // add the nodes to their corresponding clusters
+    // this is necessary, because the cluster is created after the second occurence
+    // of an apps name, so the first version of the app would not be added if
+    // everything is done in the first loop
+    for(var i = 0; i < nodes.length; i++){
+        node = nodes[i];
+        if(clusters.includes(node.app)){
+            g.setParent(node.id, node.app);
+        }
     }
 
     var edges = graph_obj.edges;
