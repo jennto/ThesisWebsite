@@ -59,7 +59,7 @@ function draw_graph(graph_obj) {
     var nodes = graph_obj.nodes;
     for(var i = 0; i < nodes.length; i++){
         node = nodes[i];
-        g.setNode(node.id, { label: node.app + "-" + node.version,  width: 50, height: 50 });
+        g.setNode(node.id, { label: node.app + "-" + node.version,  width: node.app.length*10+10, height: 40 });
         // TODO: if node.app is identical to an already existing node, create a cluster node
         // like this: 
         // g.setNode('top_group', {label: 'Top Group', clusterLabelPos: 'bottom', style: 'fill: #ffd47f'});
