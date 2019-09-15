@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="styles.css">
   <title>Microservice Documentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,9 +52,7 @@
   <img src="./Pictures/graph_istio.png"
     alt="Global Anomaly">
   -->
-  <svg width="300" height="300"> </svg>
-
-  <p id="imagetest">imagetest</p>
+  <svg width="800" height="500"> </svg>
 
   <p>
     Click on the graphs nodes to see the Swagger documentation for a specific service.<br>
@@ -76,13 +74,19 @@
 <!--
   Scripts should be at the bottom of the body, because their compilation
   slows down the display of visual elements while loading the page
+
+<script src="node_modules/dagre/dist/dagre.min.js"></script>
 -->
 <script src="node_modules/lodash/lodash.js"></script>
+<script src="node_modules/graphlib/dist/graphlib.js"></script>
+<script src="node_modules/dagre/dist/dagre.js"></script>
+<script src="node_modules/d3/build/d3.js"></script>
+<script src="node_modules/dagre-d3/dist/dagre-d3.js"></script>
+<!--
 <script src="node_modules/graphlib/dist/graphlib.core.js"></script>
 <script src="node_modules/dagre/dist/dagre.core.js"></script>
 <script src="node_modules/dagre-d3/dist/dagre-d3.core.js"></script>
-
-<script src="node_modules/dagre/dist/dagre.min.js"></script>
+-->
 
 <script src="graph.js"></script>
 

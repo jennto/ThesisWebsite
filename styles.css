@@ -98,3 +98,14 @@ footer {
   background-color: rgb(50, 50, 50);
   color: white;
 }
+
+.node rect {
+  stroke: #999;
+  fill: #fff;
+  stroke-width: 1.5px;
+}
+
+.edgePath path {
+  stroke: #333;
+  stroke-width: 1.5px;
+}

@@ -13,7 +13,6 @@ function upload_kiali_graph(evt) {
         kiali_graph_string = reader.result;
         //document.getElementById("imagetest").innerHTML = kiali_graph_string;
         var kiali_graph_obj = JSON.parse(kiali_graph_string);
-        document.getElementById("imagetest").innerHTML = kiali_graph_obj.elements.nodes[0].data.id;
         // convert kiali format into the standard format
         convert_kiali_to_standard(kiali_graph_obj);
         draw_graph(graph_obj);
@@ -37,14 +36,12 @@ function upload_standard_graph(evt){
         graph_string = reader.result;
         //document.getElementById("imagetest").innerHTML = kiali_graph_string;
         var graph_obj = JSON.parse(graph_string);
-        document.getElementById("imagetest").innerHTML = graph_obj.nodes[0].id;
         draw_graph(graph_obj);
     }
     reader.readAsText(file);
 }
 
 /*
-    TODO 0: write a graph in the standard format
     TODO 1: write this function
     draw the graph and display it on the website
     the graph has to be a javascript object
@@ -53,15 +50,24 @@ function upload_standard_graph(evt){
 */
 function draw_graph(graph_obj) {
     // create the graph
-    var g = new dagre.graphlib.Graph();
+    // TODO: find out whether it makes a difference if dagre or dagreD3 is used here
+    var g = new dagreD3.graphlib.Graph();
     g.setGraph({});
     g.setDefaultEdgeLabel(function() { return {}; });
 
+    // var clusters := [];
     var nodes = graph_obj.nodes;
     for(var i = 0; i < nodes.length; i++){
         node = nodes[i];
-        document.getElementById("imagetest").innerHTML = "node " + i;
-        g.setNode(node.id, { label: node.app + "-" + node.version,  width: 144, height: 100 });
+        g.setNode(node.id, { label: node.app + "-" + node.version,  width: 50, height: 50 });
+        // TODO: if node.app is identical to an already existing node, create a cluster node
+        // like this: 
+        // g.setNode('top_group', {label: 'Top Group', clusterLabelPos: 'bottom', style: 'fill: #ffd47f'});
+        // g.setParent('b', 'top_group');
+        // clusters.push(node.app)
+        // test if the cluster already exists, create an array of strings to keep
+        // track of existing clusters. Strings are the node.app field, because that
+        // is what is equal to all the nodes inside the cluster
     }
 
     var edges = graph_obj.edges;
@@ -77,6 +83,11 @@ function draw_graph(graph_obj) {
     var svg = d3.select("svg"), svgGroup = svg.append("g");
     render(d3.select("svg g"), g);
 
+    // Center the graph
+    // von: https://dagrejs.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
+    var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
+    svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
+    svg.attr("height", g.graph().height + 40);
 }
 
 
