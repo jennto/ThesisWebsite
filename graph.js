@@ -34,6 +34,8 @@ function upload_standard_graph(evt){
     var reader = new FileReader();
     reader.onload = function() {
         graph_string = reader.result;
+        // to prevent graph from disappearing when site is reloaded
+        window.localStorage.setItem('graph', graph_string);
         //document.getElementById("imagetest").innerHTML = kiali_graph_string;
         var graph_obj = JSON.parse(graph_string);
         draw_graph(graph_obj);
@@ -50,7 +52,6 @@ function upload_standard_graph(evt){
 */
 function draw_graph(graph_obj) {
     // create the graph
-    // TODO: find out whether it makes a difference if dagre or dagreD3 is used here
     var g = new dagreD3.graphlib.Graph({compound:true});
     g.setGraph({});
     g.setDefaultEdgeLabel(function() { return {}; });
@@ -60,9 +61,16 @@ function draw_graph(graph_obj) {
     var nodes_included = [];
     for(var i = 0; i < nodes.length; i++){
         node = nodes[i];
-        g.setNode(node.id, { label: node.app + "-" + node.version,  width: node.app.length*10+10, height: 40 });
-        // if node.app is identical to an already existing node, create a cluster node
-        // test if the cluster already exists, before creating a new one
+        // TODO: use the links specified in the graph standard format
+        // step 1: divide the swagger_bookinfo.yaml into three documents
+        // step 2: put 6 copys of the swagger-website into the folder bookinfo_swagger
+        //         and set the url of the onLoad-function inside the index.html
+        //         to the path of the OpenAPI file
+        // step 3: write a go-program that delivers the swagger-website with 
+        //         the documentation for each node, see the swagger-combine project
+        //         for how to
+        g.setNode(node.id, { labelType: "html", label: "<a href=https://www.google.com>" + node.app + "-" + node.version + "</a>",  width: node.app.length*10+10, height: 40, href: "http://www.google.com"});
+        // create a cluster if the node is another version of an already existing app
         if(nodes_included.includes(node.app)){
             if(!clusters.includes(node.app)){
                 g.setNode(node.app, {label: node.app, clusterLabelPos: ""});
@@ -132,6 +140,16 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('graph_file').addEventListener('change', upload_standard_graph, false);
   });
 
+
+// to prevent graph from disappering when the site is reloaded
+window.onload = function(e){
+    var graph_stored = window.localStorage.getItem('graph');
+    if(graph_stored === null){
+        return;
+    }
+    var graph_obj = JSON.parse(graph_stored);
+    draw_graph(graph_obj);
+}
 
 /* 
 Dieses Format wollen wir erreichen:
