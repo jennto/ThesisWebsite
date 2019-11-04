@@ -61,15 +61,9 @@ function draw_graph(graph_obj) {
     var nodes_included = [];
     for(var i = 0; i < nodes.length; i++){
         node = nodes[i];
-        // TODO: use the links specified in the graph standard format
-        // step 1: divide the swagger_bookinfo.yaml into three documents
-        // step 2: put 6 copys of the swagger-website into the folder bookinfo_swagger
-        //         and set the url of the onLoad-function inside the index.html
-        //         to the path of the OpenAPI file
-        // step 3: write a go-program that delivers the swagger-website with 
-        //         the documentation for each node, see the swagger-combine project
-        //         for how to
-        g.setNode(node.id, { labelType: "html", label: "<a href=https://www.google.com>" + node.app + "-" + node.version + "</a>",  width: node.app.length*10+10, height: 40, href: "http://www.google.com"});
+        // The links are not limited to swagger documentation. The user should be able to bind any link to his node using the link attribute in the graph specification.
+        // This design choice enables the user to use the website with any documentation form. Each microservice can be documented in it's own way.
+        g.setNode(node.id, { labelType: "html", label: "<a href=" + node.link + ">" + node.app + "-" + node.version + "</a>",  width: node.app.length*10+10, height: 40, href: "http://www.google.com"});
         // create a cluster if the node is another version of an already existing app
         if(nodes_included.includes(node.app)){
             if(!clusters.includes(node.app)){

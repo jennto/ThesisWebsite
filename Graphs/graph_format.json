@@ -4,32 +4,37 @@
           "id": "47efcb6a38cec94b8f02e15c58ce44df",
           "app": "details",
           "version": "v1",
-          "link" : "details-v1/docs"
+          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/details.yaml"
         },
         {
           "id": "c7c4074158d3c18e0c780126e50637db",
           "app": "productpage",
-          "version": "v1"
+          "version": "v1",
+          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/productpage.yaml"
         },
         {
           "id": "b744c74ec7104950b36f9bf0b47a22fd",
           "app": "ratings",
-          "version": "v1"
+          "version": "v1",
+          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/ratings.yaml"
         },
         {
           "id": "2faa6ac001f450ec4000f88ddd8294a8",
           "app": "reviews",
-          "version": "v1"
+          "version": "v1",
+          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/reviews.yaml"
         },
         {
           "id": "11b370489b738638fabddc4f4ce47ebd",
           "app": "reviews",
-          "version": "v2"
+          "version": "v2",
+          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/reviews.yaml"
         },
         {
           "id": "a142ca56dcc06f79807bea3d6832a822",
           "app": "reviews",
-          "version": "v3"
+          "version": "v3",
+          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/reviews.yaml"
         }
       ],
     "edges": [
