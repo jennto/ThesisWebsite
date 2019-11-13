@@ -33,8 +33,7 @@
         {
           "id": "a142ca56dcc06f79807bea3d6832a822",
           "app": "reviews",
-          "version": "v3",
-          "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/reviews.yaml"
+          "version": "v3"
         }
       ],
     "edges": [

@@ -16,11 +16,22 @@ function upload_kiali_graph(evt) {
         window.localStorage.setItem('graph', kiali_graph_string);
         window.localStorage.setItem('graph_type', 'kiali');
         var kiali_graph_obj = JSON.parse(kiali_graph_string);
+
         // convert kiali format into the standard format
         graph_obj = convert_kiali_to_standard(kiali_graph_obj);
-        draw_graph(graph_obj);
+
         // TODO: here the user might be asked to provide links to his documentation
         // because a kiali graph does not contain such information
+        draw_graph(graph_obj);
+
+        // TODO: add a button, that makes it possible to download the graph-object
+        // as a json-file to add missing connections (the kiali graph is based on 
+        // the network traffic in a certain time span, so it might be incomplete)
+
+        // reset the upload button, because if the same file is uploaded again,
+        // the button does not fire a change-event if this is not done, this
+        // would lead to problems, if a standard-graph is uploaded between the 
+        // two uploads of the same kiali-graph
         document.getElementById("graph_file_kiali").value = null;
     }
     reader.readAsText(file);
@@ -75,7 +86,7 @@ function draw_graph(graph_obj) {
         // Setting a link to a documentation is not required
         // If the graph specification was uploaded in kiali format, the links can be set later.
         if(node.link !== undefined){
-            g.setNode(node.id, { labelType: "html", label: "<a href=" + node.link + ">" + node.app + "-" + node.version + "</a>",  width: node.app.length*10+10, height: 40, href: "http://www.google.com"});
+            g.setNode(node.id, { labelType: "html", label: "<a href=" + node.link + ">" + node.app + "-" + node.version + "</a>",  width: node.app.length*10+10, height: 40, style: "fill: #afa", href: "http://www.google.com"});
         }
         else{
             g.setNode(node.id, { labelType: "html", label: node.app + "-" + node.version,  width: node.app.length*10+10, height: 40, href: "http://www.google.com"});
