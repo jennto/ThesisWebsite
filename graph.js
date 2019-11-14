@@ -13,6 +13,11 @@ function upload_kiali_graph(evt) {
     reader.onload = function() {
         kiali_graph_string = reader.result;
         // to prevent graph from disappearing when site is reloaded
+        // TODO: instead of storing the kiali graph, store the standard graph
+        // after converting to it.
+        // differentiating between the two is not necessary after that and 
+        // it allows us to store the standard format in localStorage for a later download
+        // To do this, the graph_obj has to be stringified after converting
         window.localStorage.setItem('graph', kiali_graph_string);
         window.localStorage.setItem('graph_type', 'kiali');
         var kiali_graph_obj = JSON.parse(kiali_graph_string);
@@ -20,19 +25,30 @@ function upload_kiali_graph(evt) {
         // convert kiali format into the standard format
         graph_obj = convert_kiali_to_standard(kiali_graph_obj);
 
-        // TODO: here the user might be asked to provide links to his documentation
-        // because a kiali graph does not contain such information
         draw_graph(graph_obj);
 
-        // TODO: add a button, that makes it possible to download the graph-object
-        // as a json-file to add missing connections (the kiali graph is based on 
-        // the network traffic in a certain time span, so it might be incomplete)
+        // convert the graph object to a json-file that can be downloaded 
+        // to add missing connections
+        // (the kiali graph is based on the network traffic in a certain time span,
+        // so it might be incomplete)
+        var button = document.getElementById("download");
+        var file = new Blob([JSON.stringify(graph_obj)], {type: 'text/plain'});
+        button.href = URL.createObjectURL(file);
+        button.download = 'kiali_standard_graph.json';
 
         // reset the upload button, because if the same file is uploaded again,
         // the button does not fire a change-event if this is not done, this
         // would lead to problems, if a standard-graph is uploaded between the 
         // two uploads of the same kiali-graph
         document.getElementById("graph_file_kiali").value = null;
+
+        // TODO: here the user is adviced to download the graph description
+        // and add documentation links
+        // because a kiali graph does not contain such information
+        alert("Your kiali graph has been succesfully uploaded. If you wish to" +
+            " provide links to your documentation, use the 'Download Graph' button" +
+            " to get your graph in the standard format and reupload it after adding them" +
+            " by using the 'Upload Own Graph' button");
     }
     reader.readAsText(file);
 }
@@ -57,6 +73,13 @@ function upload_standard_graph(evt){
         window.localStorage.setItem('graph_type', 'standard');
         var graph_obj = JSON.parse(graph_string);
         draw_graph(graph_obj);
+
+        // make the graph downloadable
+        var button = document.getElementById("download");
+        var file = new Blob([JSON.stringify(graph_obj)], {type: 'text/plain'});
+        button.href = URL.createObjectURL(file);
+        button.download = 'own_standard_graph.json';
+
         document.getElementById("graph_file").value = null;
     }
     reader.readAsText(file);
