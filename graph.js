@@ -32,7 +32,7 @@ function upload_kiali_graph(evt) {
         // (the kiali graph is based on the network traffic in a certain time span,
         // so it might be incomplete)
         var button = document.getElementById("download");
-        var file = new Blob([JSON.stringify(graph_obj)], {type: 'text/plain'});
+        var file = new Blob([JSON.stringify(graph_obj, undefined, 2)], {type: 'text/plain'});
         button.href = URL.createObjectURL(file);
         button.download = 'kiali_standard_graph.json';
 
@@ -76,7 +76,7 @@ function upload_standard_graph(evt){
 
         // make the graph downloadable
         var button = document.getElementById("download");
-        var file = new Blob([JSON.stringify(graph_obj)], {type: 'text/plain'});
+        var file = new Blob([JSON.stringify(graph_obj, undefined, 2)], {type: 'text/plain'});
         button.href = URL.createObjectURL(file);
         button.download = 'own_standard_graph.json';
 

@@ -2,18 +2,22 @@ swagger: "2.0"
 info:
   description: "This is the API of the Istio BookInfo sample application."
   version: "1.0.0"
-  title: "BookInfo API"
+  title: "BookInfo Details"
   termsOfService: "https://istio.io/"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 basePath: "/api/v1"
+tags:
+- name: "details"
 externalDocs:
   description: "Learn more about the Istio BookInfo application"
   url: "https://istio.io/docs/samples/bookinfo.html"
 paths:
   /details/{id}:
     get:
+      tags:
+      - "details"
       summary: "Get details about a book"
       description: "Get detailed information about an individual product with the given id."
       operationId: "getDetails"
