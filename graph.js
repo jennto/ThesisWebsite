@@ -172,8 +172,9 @@ function draw_graph(graph_obj) {
 
     // Center the graph
     // von: https://dagrejs.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
-    var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
-    svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
+    //var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
+    //svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
+    document.getElementById("image").style.marginLeft = "" + -(g.graph().width / 2) + "px";
     svg.attr("height", g.graph().height + 40);
 }
 

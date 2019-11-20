@@ -33,7 +33,7 @@
     <input type="file" id="graph_file_kiali" name="graph_file_kiali" accept=".json" class="filechooser"/>
     <label for="graph_file_kiali">Upload Kiali Graph</label>
     <input type="file" id="graph_file" name="graph_file" accept=".json" class="filechooser"/>
-    <label for="graph_file">Upload Own Graph</label>
+    <label for="graph_file">Upload Standard Graph</label>
     <!--
       TODO: button für den Download des Kiali-Graphen im Standard-Format 
       (Button sollte am Besten erst auftauchen, wenn ein Kiali-Graph hochgeladen
@@ -63,7 +63,7 @@
   <img src="./Pictures/graph_istio.png"
     alt="Global Anomaly">
   -->
-  <svg width="800" height="500"> </svg>
+  <svg id="image"> </svg>
 
   <p>
     Click on the graphs nodes to see the documentation for a specific service.<br>
