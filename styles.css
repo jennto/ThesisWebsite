@@ -94,6 +94,23 @@ h2 {
   position: absolute;
 }
 
+#system_name {
+  color: black;
+  background-color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 17px;
+  margin-top: 5px;
+  position: absolute;
+}
+
+#image{
+  left: 20%;
+  position: relative;
+}
+
 img {
   max-width: 100%;
   height: auto;

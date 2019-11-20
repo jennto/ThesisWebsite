@@ -50,5 +50,9 @@
           "source": "c7c4074158d3c18e0c780126e50637db",
           "target": "47efcb6a38cec94b8f02e15c58ce44df"
         }
-      ]
+      ],
+    "system" : {
+      "name" : "BookInfo",
+      "link" : "http://localhost/swagger-ui/index.html?url=http://localhost/bookinfo_swagger/combinedOAS.json"
+    }
   }

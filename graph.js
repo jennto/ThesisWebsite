@@ -94,6 +94,23 @@ function upload_standard_graph(evt){
 */
 function draw_graph(graph_obj) {
 
+    // add the name of the System if it is specified in the graph and set a link
+    // on it to the documentation of the whole system
+    var system_name = document.getElementById("system_name");
+    system_name.innerHTML = "";
+    system_name.href = "";
+    system_name.style.backgroundColor = "white";
+    system_name.style.border = "2px solid white";
+
+    if(graph_obj.system !== undefined){
+        system_name.innerHTML = graph_obj.system.name;
+        if(graph_obj.system.link !== undefined){
+            system_name.href = graph_obj.system.link;
+            system_name.style.backgroundColor = "#afa";
+            system_name.style.border = "2px solid rgb(156, 152, 152)";
+        }
+    }
+
     // create the graph
     var g = new dagreD3.graphlib.Graph({compound:true});
     g.setGraph({});
@@ -144,7 +161,7 @@ function draw_graph(graph_obj) {
     }
 
     dagre.layout(g);
-
+    
     // draw the graph
     var render = new dagreD3.render();
     //d3.select("svg").remove();
