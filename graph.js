@@ -93,9 +93,9 @@ function upload_standard_graph(evt){
     has to be converted before calling this function
 */
 function draw_graph(graph_obj) {
-
     // add the name of the System if it is specified in the graph and set a link
     // on it to the documentation of the whole system
+    // let it "disappear" if there is no system element in the graph
     var system_name = document.getElementById("system_name");
     system_name.innerHTML = "";
     system_name.href = "";
@@ -237,6 +237,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // to prevent graph from disappering when the site is reloaded
 window.onload = function(e){
+    // let system node disappear before drawing the graph
+    // (since it could be from an old graph)
+    // the graph disappears on its own, since it is appended and not a
+    // standard element in the html document
+    var system_name = document.getElementById("system_name");
+    system_name.innerHTML = "";
+    system_name.href = "";
+    system_name.style.backgroundColor = "white";
+    system_name.style.border = "2px solid white";
+
     var graph_stored = window.localStorage.getItem('graph');
     var graph_type = window.localStorage.getItem('graph_type');
     if(graph_stored === null){
