@@ -8,26 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<!-- <body style="background-color:rgb(232, 232, 232);"> -->
 <body>
-<!-- 
-  Als Überschrift könnte man auch den Namen des aktuellen Projektes nehmen
-  Website muss für jedes Projekt einzeln erstellt werden, wie ist das möglich?
-  Denn der Graph sieht bei jedem Projekt anders aus und die Links müssen anders 
-  gesetzt werden. Soll das alles per Hand passieren?
-  Erstmal Ja, um Zeit zu sparen und das Prinzip zu verstehen  
- -->
 <nav>
   <h1>Microservice Documentation</h1>
 </nav>
 
 <main>
 <!--
-  TODO: two buttons for uploading json graphs, one for kiali format, one for manually 
-  written graphs in my own standard format
+  two buttons for uploading json graphs, one for kiali format, one for manually 
+  written graphs in own standard format
   Uploading a graph will result in the drawing of this graph inside the graphbox 
   or an error message if the format is wrong
-  https://wiki.selfhtml.org/extensions/Selfhtml/frickl.php/Beispiel:JS_File-1.html#view_result
 -->
 <p>
     <input type="file" id="graph_file_kiali" name="graph_file_kiali" accept=".json" class="filechooser"/>
@@ -35,33 +26,22 @@
     <input type="file" id="graph_file" name="graph_file" accept=".json" class="filechooser"/>
     <label for="graph_file">Upload Standard Graph</label>
     <!--
-      TODO: button für den Download des Kiali-Graphen im Standard-Format 
-      (Button sollte am Besten erst auftauchen, wenn ein Kiali-Graph hochgeladen
-      wurde)
-      -->
-    <!--<input type="button" id="download" value="Download Graph" onClick="window.location.href='http://localhost/Graphs/kiali_as_standard.json'" class="download"/>
-    <input type="button" id="download" value="Download Graph" class="button"/>-->
+      Button for graph download 
+    -->
     <a id="download" class="button">Download Graph</a>
 </p>
 
 <!--
-  TODO: Get graph picture in here
-  TODO: put link to the swagger documentation for the whole system
+  Box to hold graph
 -->
 <div id="graphbox" class="contentbox">
-
+  <!--
+    node for system documentation, invisible by default
+  -->
   <a id="system_name"></a>
 
   <!--
-    Maybe make this picture bigger (together with the boxes) depending
-    on the screen size with %(percent) instead of pixels, but then it
-    it has to be zoomable so it can still be understood on small screens.
-    When percentage is used, only width needs to be specified, height will
-    follow the width in the pictures ratio
-    "http://cr.acg.maine.edu/wx_frames/gfs/ds/gfs_world-ced_t2anom_1-day.png
-  
-  <img src="./Pictures/graph_istio.png"
-    alt="Global Anomaly">
+    Graph image
   -->
   <svg id="image"> </svg>
 
@@ -84,20 +64,19 @@
 <!--
   Scripts should be at the bottom of the body, because their compilation
   slows down the display of visual elements while loading the page
-
-<script src="node_modules/dagre/dist/dagre.min.js"></script>
+-->
+<!--
+  Include graph rendering libraries
 -->
 <script src="node_modules/lodash/lodash.js"></script>
 <script src="node_modules/graphlib/dist/graphlib.js"></script>
 <script src="node_modules/dagre/dist/dagre.js"></script>
 <script src="node_modules/d3/build/d3.js"></script>
 <script src="node_modules/dagre-d3/dist/dagre-d3.js"></script>
-<!--
-<script src="node_modules/graphlib/dist/graphlib.core.js"></script>
-<script src="node_modules/dagre/dist/dagre.core.js"></script>
-<script src="node_modules/dagre-d3/dist/dagre-d3.core.js"></script>
--->
 
+<!--
+  Include code to upload, download and draw graph
+-->
 <script src="graph.js"></script>
 
 </body>

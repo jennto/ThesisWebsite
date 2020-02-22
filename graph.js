@@ -12,12 +12,7 @@ function upload_kiali_graph(evt) {
     var reader = new FileReader();
     reader.onload = function() {
         kiali_graph_string = reader.result;
-        // to prevent graph from disappearing when site is reloaded
-        // TODO: instead of storing the kiali graph, store the standard graph
-        // after converting to it.
-        // differentiating between the two is not necessary after that and 
-        // it allows us to store the standard format in localStorage for a later download
-        // To do this, the graph_obj has to be stringified after converting
+        // store the graph, so it does not disappear when the website is reloaded
         window.localStorage.setItem('graph', kiali_graph_string);
         window.localStorage.setItem('graph_type', 'kiali');
         var kiali_graph_obj = JSON.parse(kiali_graph_string);
@@ -42,7 +37,7 @@ function upload_kiali_graph(evt) {
         // two uploads of the same kiali-graph
         document.getElementById("graph_file_kiali").value = null;
 
-        // TODO: here the user is adviced to download the graph description
+        // the user is adviced to download the graph description
         // and add documentation links
         // because a kiali graph does not contain such information
         alert("Your kiali graph has been succesfully uploaded. If you wish to" +
@@ -56,9 +51,6 @@ function upload_kiali_graph(evt) {
 /*
     bound to a button, that let's people upload their manually written graph
     in the standard json-format defined for this website
-    TODO: Format formal beschreiben und einen Link zu der Beschreibung setzen
-          Die Beschreibung könnte auch auf der Website verlinkt werden, so dass 
-          Benutzer erfahren können, welches Format ihr Graph haben sollte
 */
 function upload_standard_graph(evt){
     console.log("upload standard");
@@ -86,7 +78,6 @@ function upload_standard_graph(evt){
 }
 
 /*
-    TODO 1: write this function
     draw the graph and display it on the website
     the graph has to be a javascript object
     only works with the standard format, kiali format
@@ -164,16 +155,12 @@ function draw_graph(graph_obj) {
     
     // draw the graph
     var render = new dagreD3.render();
-    //d3.select("svg").remove();
-    //var svg = d3.select("#graph").append("svg").attr("width", 800).attr("height", 500);
     var svg = d3.select("svg");
     var svgGroup = svg.append("g");
     render(d3.select("svg g"), g);
 
     // Center the graph
     // von: https://dagrejs.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
-    //var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
-    //svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
     document.getElementById("image").style.marginLeft = "" + -(g.graph().width / 2) + "px";
     svg.attr("height", g.graph().height + 40);
 }
